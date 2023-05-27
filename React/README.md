@@ -217,15 +217,15 @@ AvanProps.defaultProps = {
 - Esse m´rtodo deve ser criado no componente
 
 # Hooks
+- O que são Hooks? São meios de gerenciar o ciclo de vida dos componentes em componentes funcionais 
 - Estados: São os dados que o componente utiliza e toda vez que o estado mudar ele vai renderizar novamente o componente
-
 ## useState
 
 - O `useState` é um hook do React
 - Com ele conseguimos manusear o estado de um componente de forma simples
 - Este hook funciona muito bem com eventos
 - Podemos atrelar um evento a mudança de state
-- O hooks useState funciona da segunte forma você vai fazer a segunte linha `let  [cont , aumentar] = useState(1);` onde você vai fazer uma atribuição por desestruturação onde a primeira vai ser a variavel que vai ter o valor e a segunda é uma função que vai atualizar a variavel
+- O hooks useState funciona da segui nte forma você vai fazer a seguinte linha `let  [cont , aumentar] = useState(1);` onde você vai fazer uma atribuição por desestruturação onde a primeira vai ser a variavel que vai ter o valor e a segunda é uma função que vai atualizar a variavel
 - O react vai ficar de olho na função quando ela atualizar a variavel, e quando isso acontecer o react vai atualizar na interface(se a variavel estiver sendo usada na interface)
 
 ```js
@@ -254,6 +254,7 @@ export default function Estados() {
 ## useEffect
 
 - É usado quando queremos executar alguma coisa quando, quando alguma coisa mudar
+- Ele vai trabalhar com o ciclo de vida de um componente 
 
 ```js
 // esse hook vai exigir uma função que vai ser executada sempre que algo for mudado
@@ -275,6 +276,9 @@ useEffect(() => {
     console.log("olá");
   };
 }, []);
+
+
+
 ```
 
 ## useRef()
@@ -346,11 +350,51 @@ const App = () => {
 }
 
 ```
+## useMemo
+- É um hook bem especifico que faz a memorização de um calculo, uma ação que de certa forma vai gastar muita memoria quando o componente for renderizado novamente 
+```js 
+import {useMemo,useState} from 'react'
 
+const Teste = () => {
+  const [age,setAge] = useState[0]
+  // O useMemo vai guardar o valor retornado na função para que não renderize ou execute de novo toda vez que o componente for atualizado
+  const calculo = useMemo(()=>{
+    console.log('Calculou')
+    return 10 * 26589
+  },[])
+
+
+  //Caso o dado que você "memorizou" necessite de um dado que vem de um state
+  // Você pode passar no array de dependencias ai ele vai executar o useMemo toda vez que a variavel for atualizada
+  // Fora isso ele não vai mais renderizar
+  const calculo = useMemo(()=>{
+    console.log('Calculou')
+    return 10 * age
+  },[age])
+}
+
+
+```
+
+## UseCallback
+- Em resumo, o useCallback é usado para otimizar o desempenho de componentes funcionais, memorizando funções e reutilizando-as em renderizações futuras, desde que suas dependências não sejam alteradas.
+
+```js
+import React, { useState, useCallback } from 'react';
+
+const MyComponent = () => {
+  const [count, setCount] = useState(0);
+
+  // A função increment é memorizada usando useCallback
+  const increment = useCallback(() => {
+    setCount(prevCount => prevCount + 1);
+  }, []);
+}
+``` 
 ## Métodos por props
 
 - Os métodos tembém podem ser acessados por props
-- Ou seja, um componente filho pode ativar o métodos do seu ancstral
+- Ou seja, um componente filho pode ativar o métodos do seu ancestral
 - Vamos acessar o método por meio de um evento
 - A sintaxe é a mesma de uma porps de dados.meuEvento
 
