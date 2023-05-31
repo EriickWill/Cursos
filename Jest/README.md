@@ -53,7 +53,9 @@
 - Para que você possa usar o JSX ou TSX dentro de um arquivo de teste você vai precisar baixar mais pacotes
 - `npm i @testing-library/react @testing-library/jest-dom @testing-library/user-event -D`
 
-
+- O nome do arquivo vai dizer o que ele faz
+- nome.spec.tsx  esse aquivo é de testes unitários
+- nome.test.tsx é para testes de integração
 
 
 ```js
@@ -90,3 +92,4 @@ describe('makePoniesPink', () => {
 
 
 ```
+
