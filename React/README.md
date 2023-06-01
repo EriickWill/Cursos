@@ -260,14 +260,17 @@ export default function Estados() {
 // esse hook vai exigir uma função que vai ser executada sempre que algo for mudado
 // Que no caso vai ser o componente todo, como assim?
 // Caso algo do componente tenha mudado ele vai executar a função
+// Era chamado e componentDidUpdate
 useEffect(() => {});
 
 // Mas supondo que você queira colocar um observador em uma variavel
 // Como segundo parametro ele pede um array de variaveis que quando somente elas forem
 // mudadas a função será executada
+
 useEffect(() => {}, [variavel]);
 
 //Usando um array vazio ele so vai executar 1 vez so quando o componente for montado
+// Era chamado de componentDidMount
 useEffect(() => {}, []);
 
 // Usando um return dentro você faz que quando o componente deixar o DOM (for desmontado) ele execute a função do return
