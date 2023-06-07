@@ -394,6 +394,38 @@ const MyComponent = () => {
   }, []);
 }
 ``` 
+
+## useContext
+- é uma especie de estado global, por exemplo ele é usado para resolver o problema de passar props em forma de cascata tipo do pai para o filho e assim por diante ate chegar no ultimo filho
+- Ele meio que vai guardar todos os estados
+
+```js
+import React,{useContext} from "react"
+// Aqui é meio que o state que vai guardar as props que vão ser passadas
+const globalState = {
+  title: "Olá Mundo",
+  contador:0
+}
+// Aqui você precisa indicar o contexto para iniciar, e criar um
+const GlobalContext = React.createContext()
+
+
+function App(){
+  return(
+    //ja aqui dentro você precisa envolver todo conteudo jsx que vai receber as props dentro do GlobalContext.Provider que vai "prover" o state global atravez do param Value
+
+    <GlobalContext.Provider value={globalState}>
+        <H1 />
+    </GlobalContext.Provider>
+  )
+}
+const H1 = ()=>{
+  // Criando a constante e atribuindo um useContext e dentro dos parentes você coloca o contexto que voce quer usar que no caso é o nome da taga que você envolveu todos os elementos
+  const theContext = useContext(GlobalContext)
+
+  return <h1>{theContext.title}</h1>
+}
+```
 ## Métodos por props
 
 - Os métodos tembém podem ser acessados por props
