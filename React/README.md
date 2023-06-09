@@ -346,7 +346,7 @@ const App = () => {
     return (
       <div>
           <p>{state.couter}</p>
-          <button onClick={() => dispatch({type:"increment"})/*Aqui voê stá passando dados para o param action da função reducer*/}>Increment</button>
+          <button onClick={() => dispatch({type:"increment"})/*Aqui você stá passando dados para o param action da função reducer*/}>Increment</button>
           <button onClick={() => dispatch({type:"decrement"})}>Decrement</button>
       </div>
     )
